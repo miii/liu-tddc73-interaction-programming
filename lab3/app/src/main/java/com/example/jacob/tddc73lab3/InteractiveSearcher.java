@@ -103,8 +103,11 @@ public class InteractiveSearcher extends android.support.v7.widget.AppCompatEdit
         if (text.length() < threshold)
             return;
 
+        // Increment id
+        id++;
+
         // Fetch suggestions
-        suggestions = new GetNameSuggestions(id++);
+        suggestions = new GetNameSuggestions();
         suggestions.execute(text);
     }
 
@@ -122,37 +125,12 @@ public class InteractiveSearcher extends android.support.v7.widget.AppCompatEdit
             }
         });
 
-        /*
-        final View tv = new TextView(context);
-        tv.setText(name);
-
-        // TextView style
-        tv.setPadding(PADDING, PADDING, PADDING, PADDING);
-        tv.setTextSize(16);
-        tv.setTextColor(Color.LTGRAY);
-        tv.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Prevent the next suggestion since the user chose a name from the list
-                skipSuggestion = true;
-
-                // Add name to input and place the marker at the end
-                InteractiveSearcher.this.setText(tv.getText());
-                InteractiveSearcher.this.setSelection(tv.getText().length());
-            }
-        });
-        */
-
         layout.addView(item);
     }
 
     private class GetNameSuggestions extends AsyncTask<String, Void, List<String>> {
 
-        private int id;
-
-        public GetNameSuggestions(int i) {
-            id = i;
-        }
+        public GetNameSuggestions() {}
 
         @Override
         protected List<String> doInBackground(String... names) {
@@ -177,6 +155,12 @@ public class InteractiveSearcher extends android.support.v7.widget.AppCompatEdit
 
                 // Fetch results from JSON object
                 JSONObject json = new JSONObject(str.toString());
+                String responseId = json.getString("id");
+
+                // Break if old search result
+                if (responseId.equals(id))
+                    return null;
+
                 JSONArray rawResults = json.getJSONArray("result");
                 List<String> results = new ArrayList<>(rawResults.length());
 
