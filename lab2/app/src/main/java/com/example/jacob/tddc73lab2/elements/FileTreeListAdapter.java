@@ -1,4 +1,4 @@
-package com.example.jacob.tddc73lab2;
+package com.example.jacob.tddc73lab2.elements;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+
+import com.example.jacob.tddc73lab2.PathNode;
+import com.example.jacob.tddc73lab2.R;
 
 import java.util.List;
 

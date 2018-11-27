@@ -1,6 +1,7 @@
 package com.example.jacob.tddc73lab2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PathNode {
@@ -29,14 +30,6 @@ public class PathNode {
         return children.get(i);
     }
 
-    public PathNode getChild(String title) {
-        for (PathNode child : children)
-            if (child.getTitle().equals(title))
-                return child;
-
-        return null;
-    }
-
     public boolean hasChild(String title) {
         for (PathNode child : children)
             if (child.getTitle().equals(title))
@@ -45,9 +38,9 @@ public class PathNode {
         return false;
     }
 
-    public boolean hasChildStartingWith(String title) {
+    public boolean hasChild(PathNode node) {
         for (PathNode child : children)
-            if (child.getTitle().startsWith(title))
+            if (child == node)
                 return true;
 
         return false;
@@ -59,5 +52,24 @@ public class PathNode {
 
         children.add(node);
         return node;
+    }
+
+    private HashMap<String, PathNode> getTree(String path) {
+        HashMap<String, PathNode> paths = new HashMap<>();
+
+        // Make sure it's a leaf node
+        if (children.size() > 0)
+            for (PathNode child : children)
+                // Traverse through all children
+                paths.putAll(child.getTree(path + "/" + child.title));
+        else
+            // Add path to hashmap
+            paths.put(path, this);
+
+        return paths;
+    }
+
+    public HashMap<String, PathNode> getTree() {
+        return getTree(title);
     }
 }

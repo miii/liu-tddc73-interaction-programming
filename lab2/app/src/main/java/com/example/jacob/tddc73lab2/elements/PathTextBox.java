@@ -27,16 +27,18 @@ public class PathTextBox extends PathChanger {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // Remove slash prefix/suffix and split into array
                 String value = charSequence.toString();
-                String[] segments = value.replaceAll("^/(.*)/?$", "$1").split("/");
 
-                if (
-                    // Path should start
-                    !value.startsWith("/") ||
-                    // Check if possible group path can be found
-                    !mediator.getRootNode().hasChildStartingWith(segments[0]) ||
-                    // Check if possible child path can be found
-                    (segments.length >= 2 && !mediator.getRootNode().getChild(segments[0]).hasChildStartingWith(segments[1]))
-                )
+                // Search node by key (path)
+                boolean pathMatchExists = false;
+                for (String path : mediator.getRootNode().getTree().keySet()) {
+                    if (path.startsWith(value)) {
+                        pathMatchExists = true;
+                        break;
+                    }
+                }
+
+                // Check if path match exists
+                if (!pathMatchExists)
                     editText.setBackgroundColor(Color.RED);
                 else
                     // Reset background

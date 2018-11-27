@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private PathNode createTree() {
-        PathNode root = new PathNode("/");
+        PathNode root = new PathNode("");
 
         PathNode f1 = root.addChild("light");
             f1.addChild("white");
@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         PathNode f3 = root.addChild("dark");
             f3.addChild("blue");
             f3.addChild("black");
+
+        PathNode f4 = root.addChild("dark");
+            f4.addChild("test");
 
         return root;
     }

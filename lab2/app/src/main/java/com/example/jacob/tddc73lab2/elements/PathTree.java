@@ -4,10 +4,11 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ExpandableListView;
 
-import com.example.jacob.tddc73lab2.FileTreeListAdapter;
 import com.example.jacob.tddc73lab2.PathNode;
 import com.example.jacob.tddc73lab2.mediator.PathChanger;
 import com.example.jacob.tddc73lab2.mediator.PathMediator;
+
+import java.util.List;
 
 public class PathTree extends PathChanger {
 
@@ -38,33 +39,19 @@ public class PathTree extends PathChanger {
 
     @Override
     public void receive(String path) {
-        // Remove slash prefix/suffix and split into array
-        String[] segments = path.replaceAll("^/(.*)/?$", "$1").split("/");
-
-        // Traverse through all groups
         PathNode root = mediator.getRootNode();
-        for (int i = 0; i < root.getChildren().size(); i++) {
-            // Check if group exists
-            if (root.getChild(i).getTitle().equals(segments[0])) {
-                PathNode group = root.getChild(i);
+        PathNode node = root.getTree().get(path);
 
-                // Check if child exists
-                if (segments.length != 2 || !group.hasChild(segments[1]))
-                    break;
+        // Check if path was found
+        if (node != null) {
+            adapter.setActiveNode(node);
+            List<PathNode> groups = root.getChildren();
 
-                // Set active node in adapter
-                PathNode child = group.getChild(segments[1]);
-                adapter.setActiveNode(child);
-
-                // Expand the specific group, collapse the others
-                for (int j = 0; j < root.getChildren().size(); j++)
-                    if (j == i)
-                        view.expandGroup(j);
-                    else
-                        view.collapseGroup(j);
-
-                break;
-            }
+            for (int i = 0; i < groups.size(); i++)
+                if (groups.get(i).hasChild(node))
+                    view.expandGroup(i);
+                else
+                    view.collapseGroup(i);
         }
     }
 }
