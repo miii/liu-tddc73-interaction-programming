@@ -16,8 +16,8 @@ public class lab1_3 extends Activity {
         super.onCreate(savedInstanceState);
         setTitle("Laboration 1.3");
 
-        setContentView(R.layout.lab1_3);
-        // this.createGUI();
+        // setContentView(R.layout.lab1_3);
+        this.createGUI();
     }
 
     private void createGUI() {

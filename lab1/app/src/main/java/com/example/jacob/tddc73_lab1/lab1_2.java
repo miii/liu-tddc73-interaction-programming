@@ -103,6 +103,7 @@ public class lab1_2 extends Activity {
         EditText edt3 = new EditText(this);
         edt3.setId(R.id.email1);
         edt3.setLayoutParams(editTextParams);
+        edt3.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         edt3.setText("anders.froberg@liu.se");
         row3.addView(edt3);
 
