@@ -22,22 +22,25 @@ public class Carousel extends LinearLayout {
     private TextView titleText;
     private TextView pageText;
     private CarouselPageAdapter adapter;
+
     private List<View> items;
+    private Class<? extends CarouselPageFragment> pageFragment;
 
-    public Carousel(AppCompatActivity context, String title) {
+    public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pf, String title) {
         // Construct with empty list
-        this(context, title, new ArrayList<View>());
+        this(context, pf, title, new ArrayList<View>());
     }
 
-    public Carousel(AppCompatActivity context, String title, List<View> items) {
+    public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pf, String title, List<View> items) {
         // Construct with default items per page
-        this(context, title, items, 1);
+        this(context, pf, title, items, 1);
     }
 
-    public Carousel(AppCompatActivity context, String title, List<View> items, int itemsPerPage) {
+    public Carousel(AppCompatActivity context,  Class<? extends CarouselPageFragment> pf, String title, List<View> items, int itemsPerPage) {
         super(context);
 
         // Set context and item list
+        this.pageFragment = pf;
         this.items = items;
         this.itemsPerPage = itemsPerPage;
 
@@ -135,10 +138,6 @@ public class Carousel extends LinearLayout {
 
         @Override
         public Fragment getItem(int position) {
-            // Use vertical LinearLayout as root layout for each page
-            LinearLayout fragmentLayout = new LinearLayout(getContext());
-            fragmentLayout.setOrientation(LinearLayout.HORIZONTAL);
-
             // Get subset of items for the specific page
             int startIndex = position * itemsPerPage;
             int endIndex = Math.min((position + 1) * itemsPerPage, items.size());
@@ -151,22 +150,17 @@ public class Carousel extends LinearLayout {
                 subset.add(new LinearLayout(getContext()));
             }
 
-            for (View view : subset) {
-                // Add each view to the root layout with the same widths
-                fragmentLayout.addView(view);
-                view.setLayoutParams(new LayoutParams(
-                        LayoutParams.MATCH_PARENT,
-                        LayoutParams.MATCH_PARENT,
-                        1
-                ));
+            try {
+                // Create new instance of fragment and set items
+                CarouselPageFragment fragment = pageFragment.newInstance();
+                fragment.setItems(subset);
 
+                return fragment;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
-            // Create page fragment
-            CarouselPageFragment fragment = new CarouselPageFragment();
-            fragment.setView(fragmentLayout);
-
-            return fragment;
+            return null;
         }
 
         @Override

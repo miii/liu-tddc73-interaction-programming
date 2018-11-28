@@ -41,7 +41,7 @@ public class TestCarouselActivity extends AppCompatActivity {
         list.add(tv2);
         list.add(iv);
 
-        Carousel carousel = new Carousel(this, "Recently added");
+        Carousel carousel = new Carousel(this, BasicCarouselPageFragment.class, "Recently added");
         carousel.setItems(list);
         carousel.setItemsPerPage(2); // Default is 1
 

@@ -1,21 +1,20 @@
 package com.example.jacob.tddb84project.Carousel;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-public class CarouselPageFragment extends Fragment {
+import java.util.List;
 
-    private View view;
+public abstract class CarouselPageFragment extends Fragment {
 
-    public void setView(View v) {
-        view = v;
+    private List<View> items;
+
+    public void setItems(List<View> i) {
+        items = i;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return view;
+    protected List<View> getItems() {
+        return items;
     }
+
 }
