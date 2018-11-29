@@ -21,9 +21,12 @@ public class Carousel extends LinearLayout {
 
     private TextView titleText;
     private TextView pageText;
+    //
     private CarouselPageAdapter adapter;
 
+    // List of items
     private List<View> items;
+    // ViewPager fragment class
     private Class<? extends CarouselPageFragment> pageFragment;
 
     public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pageFragment, String title) {
@@ -156,7 +159,7 @@ public class Carousel extends LinearLayout {
             }
 
             try {
-                // Create new instance of fragment and set items
+                // Create new instance of fragment and pass the subset of items
                 CarouselPageFragment fragment = pageFragment.newInstance();
                 fragment.setItems(subset);
 

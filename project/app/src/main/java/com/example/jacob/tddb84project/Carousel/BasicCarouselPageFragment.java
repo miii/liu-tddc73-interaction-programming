@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+/**
+ * Example implementation of the CarouselPageFragment
+ */
 public class BasicCarouselPageFragment extends CarouselPageFragment {
 
     @Override

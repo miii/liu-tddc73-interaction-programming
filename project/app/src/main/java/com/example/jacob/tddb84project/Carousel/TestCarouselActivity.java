@@ -47,6 +47,9 @@ public class TestCarouselActivity extends AppCompatActivity {
         carousel.setItems(list);
         carousel.setItemsPerPage(2); // Default is 1
 
+        // To update page fragment at runtime
+        // carousel.setPageFragment(BasicCarouselPageFragment.class);
+
         setContentView(carousel);
     }
 }
