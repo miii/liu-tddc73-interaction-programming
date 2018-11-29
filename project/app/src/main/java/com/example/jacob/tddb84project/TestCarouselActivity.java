@@ -1,4 +1,4 @@
-package com.example.jacob.tddb84project.Carousel;
+package com.example.jacob.tddb84project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.jacob.tddb84project.Carousel.BasicCarouselPageFragment;
 import com.example.jacob.tddb84project.Carousel.Carousel;
-import com.example.jacob.tddb84project.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,12 +8,9 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm.StrengthValidatorInterface;
 import com.example.jacob.tddb84project.PasswordStrengthMeter.visualization.VisualizationInterface;
-import com.example.jacob.tddb84project.R;
 
 import java.util.ArrayList;
 import java.util.List;

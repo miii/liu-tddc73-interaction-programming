@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+/**
+ * Example implementation of the VisualizationInterface
+ */
 public class ProgressBarVisualization implements VisualizationInterface {
     ProgressBar progressBar;
 

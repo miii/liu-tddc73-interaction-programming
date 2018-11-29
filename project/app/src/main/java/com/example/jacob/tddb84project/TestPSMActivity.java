@@ -1,10 +1,11 @@
-package com.example.jacob.tddb84project.PasswordStrengthMeter;
+package com.example.jacob.tddb84project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.jacob.tddb84project.PasswordStrengthMeter.PasswordStrengthMeter;
 import com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm.BasicStrengthValidator;
 import com.example.jacob.tddb84project.PasswordStrengthMeter.visualization.ProgressBarVisualization;
 import com.example.jacob.tddb84project.PasswordStrengthMeter.visualization.TextVisualization;

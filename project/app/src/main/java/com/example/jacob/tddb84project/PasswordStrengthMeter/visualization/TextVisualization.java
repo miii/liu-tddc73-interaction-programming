@@ -3,6 +3,9 @@ package com.example.jacob.tddb84project.PasswordStrengthMeter.visualization;
 import android.content.Context;
 import android.view.View;
 
+/**
+ * Example implementation of the VisualizationInterface
+ */
 public class TextVisualization extends android.support.v7.widget.AppCompatTextView implements VisualizationInterface {
     private String prefix = "Password strength: ";
 

@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PasswordStrengthMeter.TestPSMActivity"></activity>
-        <activity android:name=".Carousel.TestCarouselActivity"></activity>
+        <activity android:name=".TestPSMActivity"></activity>
+        <activity android:name=".TestCarouselActivity"></activity>
     </application>
 
 </manifest>

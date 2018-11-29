@@ -1,5 +1,8 @@
 package com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm;
 
+/**
+ * Example implementation of the StrengthValidatorInterface
+ */
 public class BasicStrengthValidator implements StrengthValidatorInterface {
 
     @Override
