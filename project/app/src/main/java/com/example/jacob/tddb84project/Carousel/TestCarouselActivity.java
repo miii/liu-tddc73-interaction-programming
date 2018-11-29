@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.jacob.tddb84project.Carousel.BasicCarouselPageFragment;
+import com.example.jacob.tddb84project.Carousel.Carousel;
 import com.example.jacob.tddb84project.R;
 
 import java.util.ArrayList;

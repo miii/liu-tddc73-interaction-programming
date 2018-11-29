@@ -26,21 +26,21 @@ public class Carousel extends LinearLayout {
     private List<View> items;
     private Class<? extends CarouselPageFragment> pageFragment;
 
-    public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pf, String title) {
+    public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pageFragment, String title) {
         // Construct with empty list
-        this(context, pf, title, new ArrayList<View>());
+        this(context, pageFragment, title, new ArrayList<View>());
     }
 
-    public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pf, String title, List<View> items) {
+    public Carousel(AppCompatActivity context, Class<? extends CarouselPageFragment> pageFragment, String title, List<View> items) {
         // Construct with default items per page
-        this(context, pf, title, items, 1);
+        this(context, pageFragment, title, items, 1);
     }
 
-    public Carousel(AppCompatActivity context,  Class<? extends CarouselPageFragment> pf, String title, List<View> items, int itemsPerPage) {
+    public Carousel(AppCompatActivity context,  Class<? extends CarouselPageFragment> pageFragment, String title, List<View> items, int itemsPerPage) {
         super(context);
 
         // Set context and item list
-        this.pageFragment = pf;
+        this.pageFragment = pageFragment;
         this.items = items;
         this.itemsPerPage = itemsPerPage;
 
@@ -54,7 +54,7 @@ public class Carousel extends LinearLayout {
         titleText = view.findViewById(R.id.carousel_title);
         titleText.setText(title);
 
-        // Update page text
+        // Set page text
         pageText = view.findViewById(R.id.page);
         updatePageText();
 
@@ -124,6 +124,11 @@ public class Carousel extends LinearLayout {
 
     public int getPageCount() {
         return (int) Math.ceil(items.size() * 1.0D / itemsPerPage);
+    }
+
+    public void setPageFragment(Class<? extends CarouselPageFragment> fragment) {
+        pageFragment = fragment;
+        refresh();
     }
 
     private void updatePageText() {
