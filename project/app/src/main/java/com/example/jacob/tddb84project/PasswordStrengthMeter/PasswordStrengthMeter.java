@@ -19,13 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PasswordStrengthMeter extends LinearLayout {
-    private Context context;
+    // Support single validator
     private StrengthValidatorInterface validator = null;
+    // Support multiple visualizers
     private List<VisualizationInterface> visualizers = new ArrayList<>();
 
     public PasswordStrengthMeter(Context context) {
         super(context);
 
+        // Setup layout
         LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -50,6 +52,7 @@ public class PasswordStrengthMeter extends LinearLayout {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Validate new data and update visualization
                 update(charSequence.toString());
             }
 
@@ -86,7 +89,7 @@ public class PasswordStrengthMeter extends LinearLayout {
             return;
 
         // Calculate validation score
-        Float score = validator.validate(text);
+        Double score = validator.validate(text);
 
         // Update visualizers
         for (VisualizationInterface visualizer : visualizers)

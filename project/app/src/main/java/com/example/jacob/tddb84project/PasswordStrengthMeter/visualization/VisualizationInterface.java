@@ -4,6 +4,13 @@ import android.content.Context;
 import android.view.View;
 
 public interface VisualizationInterface {
+    /**
+     * Get visualizer view
+     */
     View getView(Context context);
-    void onUpdate(Float score);
+
+    /**
+     * On score update callback
+     */
+    void onUpdate(Double score);
 }

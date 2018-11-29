@@ -3,9 +3,9 @@ package com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm;
 public class BasicStrengthValidator implements StrengthValidatorInterface {
 
     @Override
-    public float validate(String password) {
+    public double validate(String password) {
         if (password.length() > 0)
-            return (100 / 16f) * Math.min(16, password.length());
+            return (1 / 16f) * Math.min(16, password.length());
 
         return 0;
     }

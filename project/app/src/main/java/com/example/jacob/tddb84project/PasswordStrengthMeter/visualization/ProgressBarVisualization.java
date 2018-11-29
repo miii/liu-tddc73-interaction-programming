@@ -11,6 +11,7 @@ public class ProgressBarVisualization implements VisualizationInterface {
     ProgressBar progressBar;
 
     public ProgressBarVisualization(Context context) {
+        // Create progress bar
         progressBar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
         progressBar.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -24,13 +25,18 @@ public class ProgressBarVisualization implements VisualizationInterface {
     }
 
     @Override
-    public void onUpdate(Float score) {
-        progressBar.setProgress(score.intValue());
+    public void onUpdate(Double score) {
+        // Convert to rounded percentage
+        int percent = (int) Math.round(score * 100);
 
+        // Set progress bar value
+        progressBar.setProgress(percent);
+
+        // Add colors to progress bar
         int color;
-        if (score > 70)
+        if (percent > 70)
             color = Color.rgb(0, 200, 0);
-        else if (score > 40)
+        else if (percent > 40)
             color = Color.rgb(240, 140, 0);
         else
             color = Color.RED;

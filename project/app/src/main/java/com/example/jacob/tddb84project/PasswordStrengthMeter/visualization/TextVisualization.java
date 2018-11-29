@@ -18,7 +18,7 @@ public class TextVisualization extends android.support.v7.widget.AppCompatTextVi
     }
 
     @Override
-    public void onUpdate(Float score) {
-        setText(prefix + score.intValue() + "%");
+    public void onUpdate(Double score) {
+        setText(prefix + Math.round(score * 100) + "%");
     }
 }
