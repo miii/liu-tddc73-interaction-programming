@@ -1,4 +1,4 @@
-package com.example.jacob.tddb84project.PasswordStrengthMeter.visualization;
+package com.example.jacob.tddb84project.PasswordStrengthMeter.Visualization;
 
 import android.content.Context;
 import android.view.View;

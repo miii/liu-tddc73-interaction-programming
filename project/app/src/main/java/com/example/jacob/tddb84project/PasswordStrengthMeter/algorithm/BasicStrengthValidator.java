@@ -1,4 +1,4 @@
-package com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm;
+package com.example.jacob.tddb84project.PasswordStrengthMeter.Algorithm;
 
 /**
  * Example implementation of the StrengthValidatorInterface

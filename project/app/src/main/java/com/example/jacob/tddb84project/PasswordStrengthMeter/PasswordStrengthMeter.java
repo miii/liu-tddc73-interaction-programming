@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm.StrengthValidatorInterface;
-import com.example.jacob.tddb84project.PasswordStrengthMeter.visualization.VisualizationInterface;
+import com.example.jacob.tddb84project.PasswordStrengthMeter.Algorithm.StrengthValidatorInterface;
+import com.example.jacob.tddb84project.PasswordStrengthMeter.Visualization.VisualizationInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,8 @@ public class PasswordStrengthMeter extends LinearLayout {
     private StrengthValidatorInterface validator = null;
     // Support multiple visualizers
     private List<VisualizationInterface> visualizers = new ArrayList<>();
+    // Listeners
+    private List<OnPasswordUpdateListener> listeners = new ArrayList<>();
 
     public PasswordStrengthMeter(Context context) {
         super(context);
@@ -80,6 +82,14 @@ public class PasswordStrengthMeter extends LinearLayout {
         removeView(view);
     }
 
+    public void addOnUpdateListener(OnPasswordUpdateListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeOnUpdateListener(OnPasswordUpdateListener listener) {
+        listeners.remove(listener);
+    }
+
     private void update(String text) {
         // Do nothing if no validator has been given
         if (validator == null)
@@ -91,5 +101,8 @@ public class PasswordStrengthMeter extends LinearLayout {
         // Update visualizers
         for (VisualizationInterface visualizer : visualizers)
             visualizer.onUpdate(score);
+
+        for (OnPasswordUpdateListener listener : listeners)
+            listener.onUpdate(score);
     }
 }

@@ -5,10 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.jacob.tddb84project.PasswordStrengthMeter.OnPasswordUpdateListener;
 import com.example.jacob.tddb84project.PasswordStrengthMeter.PasswordStrengthMeter;
-import com.example.jacob.tddb84project.PasswordStrengthMeter.algorithm.BasicStrengthValidator;
-import com.example.jacob.tddb84project.PasswordStrengthMeter.visualization.ProgressBarVisualization;
-import com.example.jacob.tddb84project.PasswordStrengthMeter.visualization.TextVisualization;
+import com.example.jacob.tddb84project.PasswordStrengthMeter.Algorithm.BasicStrengthValidator;
+import com.example.jacob.tddb84project.PasswordStrengthMeter.Visualization.ProgressBarVisualization;
+import com.example.jacob.tddb84project.PasswordStrengthMeter.Visualization.TextVisualization;
 
 public class TestPSMActivity extends AppCompatActivity {
 
@@ -39,6 +40,13 @@ public class TestPSMActivity extends AppCompatActivity {
         // Add visualizers
         meter.addVisualizer(new TextVisualization(this));
         meter.addVisualizer(new ProgressBarVisualization(this));
+
+        meter.addOnUpdateListener(new OnPasswordUpdateListener() {
+            @Override
+            public void onUpdate(Double score) {
+                // Respond to score change, e.g. show a submit button
+            }
+        });
     }
 
 }
